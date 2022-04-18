@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  nats:
+    container_name: trend_nats
+    entrypoint: '/nats-server -c nats-server.conf -DV'
+    image: nats
+    ports:
+      - '4222:4222'
+      - '6222:6222'
+      - '8222:8222'
+  mongodb:
+    container_name: trend_db
+    image: mongo:latest
+    environment:
+      - MONGODB_DATABASE="db"
+    ports:
+      - 27017:27017
